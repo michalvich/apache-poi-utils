@@ -2,6 +2,8 @@ package com.michalvich.poi.utils;
 
 import org.apache.poi.ss.usermodel.Cell;
 
+import java.text.DecimalFormat;
+
 public class Cells {
 
     public static String getValueAsString(Cell cell) {
@@ -10,8 +12,11 @@ public class Cells {
 
             case Cell.CELL_TYPE_STRING:
                 return cell.getStringCellValue();
+            case Cell.CELL_TYPE_FORMULA:
+                return cell.getCellFormula();
             case Cell.CELL_TYPE_NUMERIC:
-                return Double.valueOf(cell.getNumericCellValue()).toString();
+                double value = cell.getNumericCellValue();
+                return new DecimalFormat("#").format(value);
             case Cell.CELL_TYPE_BLANK:
                 return "";
 

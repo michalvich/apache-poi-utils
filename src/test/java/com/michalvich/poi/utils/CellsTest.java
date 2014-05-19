@@ -23,11 +23,38 @@ public class CellsTest {
     @Test
     public void should_return_string_for_cell_type_string() throws Exception {
 
+        final String expectedValue = "string";
+
         cell.setCellType(Cell.CELL_TYPE_STRING);
-        String expectedValue = "string";
         cell.setCellValue(expectedValue);
 
         assertEquals(expectedValue, Cells.getValueAsString(cell));
+
+    }
+
+    @Test
+    public void should_return_string_for_cell_type_formula() throws Exception {
+
+        final String expectedValue = "12";
+
+        cell.setCellType(Cell.CELL_TYPE_FORMULA);
+        cell.setCellFormula("12");
+        cell.setCellValue(expectedValue);
+
+        assertEquals(expectedValue.toString(), Cells.getValueAsString(cell));
+
+    }
+
+
+    @Test
+    public void should_return_string_for_cell_type_numeric() throws Exception {
+
+        final Double expectedValue = 12.0;
+
+        cell.setCellType(Cell.CELL_TYPE_NUMERIC);
+        cell.setCellValue(expectedValue);
+
+        assertEquals("12", Cells.getValueAsString(cell));
 
     }
 
